@@ -68,5 +68,14 @@ const getScore= rolls =>{
   }  
 };
 
-console.log(getScore([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10]));
-module.exports={getScore};
+const getBestScore= rolls=>{
+  if (!Array.isArray(rolls)) {
+    throw new Error('Not an array');
+  }
+  return rolls.reduce((bestScore,currentRoll)=>{
+    return Math.max(bestScore, getScore(currentRoll));
+  },0);
+};
+// console.log(getBestScore([[10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10],[3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]]));
+// console.log(getBestScore('hbyh'));
+module.exports={getScore,getBestScore};

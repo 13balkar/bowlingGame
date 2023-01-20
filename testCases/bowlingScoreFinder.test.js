@@ -1,4 +1,4 @@
-const {getScore}=require('../functionalities/bowlingScoreFinder');
+const {getScore,getBestScore}=require('../functionalities/bowlingScoreFinder');
 describe('Bowl score finder',()=>{
   describe('Calculate the score of each roll',()=>{
     it('Should throw error when input is not an array',()=>{
@@ -24,6 +24,14 @@ describe('Bowl score finder',()=>{
     });
     it('Should return return valid score if last throw is spear',()=>{
       expect(getScore([6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,6,8])).toBe(34);
+    });
+  });
+  describe('Find best score out of some rolls',()=>{
+    it('Should throw error when input is not an array',()=>{
+      expect(()=>getBestScore('abc')).toThrow('Not an array');
+    });
+    it('Should should return max score from rolls when input is correct',()=>{
+      expect(getBestScore([[10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10],[3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]])).toBe(120);
     });
   });
     
